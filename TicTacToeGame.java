@@ -21,33 +21,52 @@ public class TicTacToeGame
         }
         System.out.println("Computer Letter is: " + ComputerLetter+" User Letter is : " + UserLetter);
 		}
-    public static char chooseLetter(){
-        char symbol;
-        Scanner UserInput = new Scanner(System.in);
-        System.out.print("Enter your symbol");
-        symbol=UserInput.next().toUpperCase().charAt(0);
-        return symbol;
+         showBoard(board);
+        int userMove = getUserMove(board);
+        showBoard(board);
     }
-
-		 public static void showBoard(char[] board)
+    public static int getUserMove(char[] board)
     {
-        System.out.println("Current Board");
+        Scanner sc = new Scanner(System.in);
+        Integer[] validCells = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-        for (int index = 1; index < board.length; index++)
+
+        while (true)
         {
-            System.out.print(board[index] + " | ");
-            if(index == 3 || index == 6 || index == 9)
-            {
-                System.out.println();
-            }
+            System.out.println("What is your next move ? (1-9");
+            int index = sc.nextInt();
+            if (Arrays.asList(validCells).contains(index) && isSpaceFree(board, index))
+                return index;
+
         }
 
     }
+    private static boolean isSpaceFree(char[] board, int index)
+    {
+        return board[index] == ' ';
+    }
+    public static char chooseLetter()
+    {
+        char symbol;
+        Scanner UserInput = new Scanner(System.in);
+        System.out.print("Enter your symbol");
+        symbol = UserInput.next().toUpperCase().charAt(0);
+        return symbol;
+    }
 
+    public static void showBoard(char[] board)
+    {
+        System.out.println("\n" + board[1] + "  |  "  + board[2] + "  |  " + board[3]);
+        System.out.println("--------------");
+        System.out.println(" " + board[4] + "  |  "  + board[5] + "  |  " + board[6]);
+        System.out.println("--------------");
+        System.out.println(" " + board[7] + "  |  "  +board[8] + "  |  " + board[9]);
+        System.out.println("--------------");
+    }
     public static char[] createBoard()
     {
         char[] board = new char[10];
-        for(int index = 0; index < board.length; index++)
+        for(int index = 1; index < board.length; index++)
         {
             board[index] = ' ';
         }
