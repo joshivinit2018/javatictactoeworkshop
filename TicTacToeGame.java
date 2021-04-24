@@ -122,7 +122,7 @@ public class TicTacToeGame
             }
             else
             {
-                temp= "P";
+                temp= "Play";
             }
         }
         return  temp;
